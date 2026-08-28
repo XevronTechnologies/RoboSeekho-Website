@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You &mdash; RoboSeekho</title>
+  <meta name="description" content="Thanks for reaching out! Our team will get back to you within one business day.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* ── Thank-you page specific styles ── */
+    .ty-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ty-section::before,
+    .ty-section::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    .ty-section::before {
+      width: 600px;
+      height: 600px;
+      background: var(--clr-primary, #6c63ff);
+      top: -100px;
+      left: -150px;
+      animation: drift 10s ease-in-out infinite alternate;
+    }
+
+    .ty-section::after {
+      width: 450px;
+      height: 450px;
+      background: var(--clr-accent, #00d4aa);
+      bottom: -80px;
+      right: -100px;
+      animation: drift 13s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes drift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(40px, 30px) scale(1.08); }
+    }
+
+    .ty-card {
+      position: relative;
+      z-index: 1;
+      background: var(--clr-surface, rgba(255,255,255,0.06));
+      border: 1px solid var(--clr-border, rgba(255,255,255,0.1));
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 2rem;
+      padding: 4rem 3.5rem;
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.18);
+      animation: slideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .ty-icon {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 2rem;
+    }
+
+    .ty-icon-ring {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6c63ff22, #00d4aa22);
+      border: 2.5px solid var(--clr-accent, #00d4aa);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: popIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.5); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .ty-icon-ring svg {
+      width: 42px;
+      height: 42px;
+      stroke: var(--clr-accent, #00d4aa);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    .check-path {
+      stroke-dasharray: 60;
+      stroke-dashoffset: 60;
+      animation: drawCheck 0.5s ease 0.9s forwards;
+    }
+
+    @keyframes drawCheck {
+      to { stroke-dashoffset: 0; }
+    }
+
+    .ty-eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--clr-accent, #00d4aa);
+      background: linear-gradient(135deg, #00d4aa18, #6c63ff18);
+      border: 1px solid var(--clr-accent, #00d4aa);
+      border-radius: 100px;
+      padding: 0.35rem 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .ty-card h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .ty-card > p {
+      font-size: 1.05rem;
+      opacity: 0.75;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .ty-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-bottom: 2.5rem;
+      text-align: left;
+    }
+
+    .ty-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      padding: 0.9rem 1.1rem;
+      background: rgba(255,255,255,0.04);
+      border-radius: 0.9rem;
+      border: 1px solid rgba(255,255,255,0.07);
+      animation: slideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .ty-step:nth-child(1) { animation-delay: 0.9s; }
+    .ty-step:nth-child(2) { animation-delay: 1.05s; }
+    .ty-step:nth-child(3) { animation-delay: 1.2s; }
+
+    .ty-step-num {
+      width: 30px;
+      height: 30px;
+      min-width: 30px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6c63ff, #00d4aa);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ty-step-body strong {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .ty-step-body span {
+      font-size: 0.82rem;
+      opacity: 0.65;
+    }
+
+    .ty-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .ty-redirect-note {
+      margin-top: 1.5rem;
+      font-size: 0.78rem;
+      opacity: 0.45;
+    }
+
+    @media (max-width: 480px) {
+      .ty-card { padding: 2.5rem 1.25rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <header class="site-header" id="siteHeader">
+    <nav class="navbar container">
+      <a href="index.html" class="brand">
+        <img src="logo.png" alt="RoboSeekho logo" class="brand-logo">
+        <span class="brand-text">Robo<span>Seekho</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="index.html#labs" class="nav-link">Labs</a></li>
+        <li><a href="why-us.html" class="nav-link">Why Us</a></li>
+        <li><a href="process.html" class="nav-link">Process</a></li>
+        <li><a href="impact.html" class="nav-link">Impact</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+          </svg>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="ty-section">
+      <div class="ty-card">
+
+        <div class="ty-icon">
+          <div class="ty-icon-ring">
+            <svg viewBox="0 0 24 24">
+              <polyline class="check-path" points="4,12 9,17 20,6" />
+            </svg>
+          </div>
+        </div>
+
+        <span class="ty-eyebrow">Message Received</span>
+        <h1>We've got your enquiry!</h1>
+        <p>Thanks for reaching out. Our team will review your details and get back to you within <strong>one business day</strong> with a tailored recommendation.</p>
+
+        <div class="ty-steps">
+          <div class="ty-step">
+            <div class="ty-step-num">1</div>
+            <div class="ty-step-body">
+              <strong>Review &amp; match</strong>
+              <span>We'll review your requirements and match you with the right solution.</span>
+            </div>
+          </div>
+          <div class="ty-step">
+            <div class="ty-step-num">2</div>
+            <div class="ty-step-body">
+              <strong>Personalised proposal</strong>
+              <span>You'll receive a tailored package recommendation over email.</span>
+            </div>
+          </div>
+          <div class="ty-step">
+            <div class="ty-step-num">3</div>
+            <div class="ty-step-body">
+              <strong>Free consultation</strong>
+              <span>We'll schedule a no-obligation walkthrough of your needs and budget.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ty-actions">
+          <a href="index.html" class="btn btn-primary">Back to Home</a>
+          <a href="index.html#labs" class="btn btn-outline">Explore Labs</a>
+        </div>
+
+        <p class="ty-redirect-note" id="redirectNote">You'll be redirected to the home page in <span id="countdown">30</span>s</p>
+
+      </div>
+    </section>
+  </main>
+
+  <script src="js/script.js"></script>
+  <script>
+    // Countdown + auto-redirect
+    var seconds = 30;
+    var countdownEl = document.getElementById('countdown');
+    var timer = setInterval(function () {
+      seconds--;
+      if (countdownEl) countdownEl.textContent = seconds;
+      if (seconds <= 0) {
+        clearInterval(timer);
+        window.location.href = 'index.html';
+      }
+    }, 1000);
+  </script>
+
+</body>
+
+</html>

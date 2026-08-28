@@ -1,0 +1,212 @@
+{
+  "siteConfig": {
+    "companyName": "RoboSeekho",
+    "phone": "+91 8696843733",
+    "email": "contact@roboseekho.in",
+    "address": "Kota, Rajasthan, India",
+    "social": {
+      "facebook": "",
+      "twitter": "",
+      "instagram": "",
+      "linkedin": "",
+      "youtube": ""
+    }
+  },
+  "labs": [
+    {
+      "id": "stem-robotics",
+      "icon": "🤖",
+      "title": "STEM & Robotics Lab",
+      "grades": "Classes 3–12",
+      "tags": [
+        "primary",
+        "secondary"
+      ],
+      "grad": "linear-gradient(135deg,#5b8cff,#22d3ee)",
+      "summary": "A combined lab where science, technology, engineering, arts and maths concepts are taught through robotics kits and guided projects.",
+      "description": "The STEM & Robotics Lab blends robotics hardware with a grade-wise curriculum so students move from simple circuits to autonomous robots over the course of their schooling. It doubles as the anchor lab most schools start with before adding AI, IoT or AR/VR.",
+      "features": [
+        "Certified curriculum for Classes 3–12",
+        "Aligned with CBSE, ICSE, CSTA, IGCSE & NEP 2020",
+        "Combines robotics, AI, AR/VR and solar concepts in one space",
+        "Onsite teacher training with year-round support"
+      ],
+      "kits": [
+        "Robotics Kits",
+        "Arduino Robotic Kits",
+        "STEMBOT",
+        "Paper Circuit Kits"
+      ]
+    },
+    {
+      "id": "ai-robotics",
+      "icon": "🧠",
+      "title": "AI & Robotics Lab",
+      "grades": "K-12, all levels",
+      "tags": [
+        "primary",
+        "secondary"
+      ],
+      "grad": "linear-gradient(135deg,#8b5cf6,#5b8cff)",
+      "summary": "A future-ready learning space where students design, code and build intelligent systems — well beyond a standard computer lab.",
+      "description": "The AI & Robotics Lab introduces students to artificial intelligence and robotics through age-appropriate DIY kits and the AI Connect platform, which converts between block-based and text-based code as learners progress.",
+      "features": [
+        "Grade-wise curriculum aligned with NEP 2020",
+        "AI Connect: block-to-text and text-to-block coding",
+        "NASSCOM-certified AI content",
+        "Compatible with CBSE, ICSE and international boards"
+      ],
+      "kits": [
+        "AI & Robotics DIY Kits",
+        "AI Connect Platform",
+        "LMS Access"
+      ]
+    },
+    {
+      "id": "ai-iot",
+      "icon": "📡",
+      "title": "AI & IoT Lab",
+      "grades": "Classes 3–12",
+      "tags": [
+        "secondary"
+      ],
+      "grad": "linear-gradient(135deg,#22d3ee,#5b8cff)",
+      "summary": "Hands-on exploration of artificial intelligence and the Internet of Things through real, connected devices and sensors.",
+      "description": "Students prototype real IoT devices — from sensor networks to smart automation projects — while learning the AI fundamentals behind them, using kits designed specifically for K-12 classrooms.",
+      "features": [
+        "Grade-wise certified curriculum, Classes 3–12",
+        "Aligned with CSTA, IGCSE, ICSE, CBSE & NEP 2020",
+        "Integrated hardware + software stack",
+        "Recommended lab space: 500–1,200 sq. ft."
+      ],
+      "kits": [
+        "Tinker Orbit Kit",
+        "STEMBOT",
+        "AI Hero Bitli Kit",
+        "AI Connect Platform"
+      ]
+    },
+    {
+      "id": "ar-vr",
+      "icon": "🥽",
+      "title": "AR/VR Lab",
+      "grades": "Classes 1–12",
+      "tags": [
+        "primary",
+        "secondary"
+      ],
+      "grad": "linear-gradient(135deg,#f97316,#8b5cf6)",
+      "summary": "Immersive, first-person learning using standalone VR headsets — no PC or wiring required.",
+      "description": "With a library of 1,000+ interactive VR modules and 5,000+ 360° images and 3D videos spanning physics, chemistry, biology, maths and virtual field trips, students grasp abstract concepts by experiencing them directly.",
+      "features": [
+        "Standalone Meta Quest headsets — ready in under 60 seconds",
+        "1,000+ curriculum-mapped VR modules",
+        "Aligned with CBSE, ICSE, IGCSE & NEP 2020",
+        "No external PC or tethered cabling needed"
+      ],
+      "kits": [
+        "Meta Quest Headsets",
+        "Preloaded VR Curriculum",
+        "Teacher Management Console"
+      ]
+    },
+    {
+      "id": "atal-tinkering",
+      "icon": "⚡",
+      "title": "Atal Tinkering Lab",
+      "grades": "Govt.-mandated · Secondary",
+      "tags": [
+        "secondary",
+        "govt"
+      ],
+      "grad": "linear-gradient(135deg,#5b8cff,#f97316)",
+      "summary": "End-to-end setup of the Atal Innovation Mission's flagship ATL programme, run by NITI Aayog.",
+      "description": "Atal Tinkering Labs are a Government of India initiative under the Atal Innovation Mission to build scientific temperament and innovation skills. We deliver all four GEM-certified equipment packages plus curriculum, training and LMS access.",
+      "features": [
+        "Package 1: electronics, robotics, IoT & sensors",
+        "Package 2: rapid prototyping tools (incl. 3D printers)",
+        "Package 3: mechanical, electrical & measurement tools",
+        "Package 4: power supply, accessories & safety equipment"
+      ],
+      "kits": [
+        "3D Printers",
+        "Robotics Kits",
+        "Electronics Components",
+        "Safety Equipment"
+      ]
+    },
+    {
+      "id": "pre-tinkering",
+      "icon": "🧩",
+      "title": "Pre-Tinkering Lab",
+      "grades": "Classes 2–5",
+      "tags": [
+        "primary"
+      ],
+      "grad": "linear-gradient(135deg,#22d3ee,#8b5cf6)",
+      "summary": "A playful introduction to STEAM for primary students, built around six hands-on kits.",
+      "description": "Designed for Classes 2–5, the Pre-Tinkering Lab uses safe, age-appropriate kits and guided activities to build early analytical thinking and creativity before students move on to full tinkering or robotics labs.",
+      "features": [
+        "Six integrated curriculum kits",
+        "Safe, age-appropriate equipment",
+        "Blends structured content with playful exploration",
+        "Recommended lab space: 500–1,200 sq. ft."
+      ],
+      "kits": [
+        "Catapult & Arrow",
+        "Fun Linker Kit",
+        "Little Critters Kit",
+        "STEM Paper Circuit",
+        "Straw Bot Kit",
+        "Tinker N Design"
+      ]
+    },
+    {
+      "id": "composite-skill",
+      "icon": "🧬",
+      "title": "Composite Skill Lab",
+      "grades": "CBSE · Classes 6–12",
+      "tags": [
+        "secondary",
+        "govt"
+      ],
+      "grad": "linear-gradient(135deg,#8b5cf6,#22d3ee)",
+      "summary": "The CBSE-mandated multidisciplinary skill lab covering AI, electronics and robotics under one roof.",
+      "description": "CBSE requires new-affiliation schools to set up a Composite Skill Lab, with existing schools given three years to comply. We design either one 600 sq. ft. lab (Classes 6–12) or two 400 sq. ft. labs split by grade band.",
+      "features": [
+        "Meets CBSE affiliation requirements",
+        "Covers AI, robotics, electronics, coding, 3D printing & AR/VR",
+        "Aligned with NEP 2020 & NCF-SE",
+        "Includes teacher training & technical support"
+      ],
+      "kits": [
+        "Industry-standard Tools",
+        "3D Printers",
+        "Robotics & Electronics Kits",
+        "AR/VR Sets"
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "q": "How much space do we need for a lab?",
+      "a": "Most labs — STEM & Robotics, AI & IoT and AR/VR — fit comfortably in 500–1,200 sq. ft. Composite Skill Labs need a 600 sq. ft. room, or two 400 sq. ft. rooms split by grade band."
+    },
+    {
+      "q": "Do the labs cover our curriculum board?",
+      "a": "Yes. Content across our labs is mapped to CBSE, ICSE, IGCSE, CSTA and NEP 2020, and the Composite Skill Lab specifically satisfies CBSE's NCF-SE requirements."
+    },
+    {
+      "q": "Is teacher training included?",
+      "a": "Every lab package includes onsite teacher training at launch plus ongoing support throughout the year, so your own staff can run sessions independently."
+    },
+    {
+      "q": "Can we start with one lab and add more later?",
+      "a": "Absolutely — most schools begin with a STEM & Robotics or Atal Tinkering Lab and expand into AI & IoT, AR/VR or a Composite Skill Lab in later phases."
+    },
+    {
+      "q": "Do you support schools outside India?",
+      "a": "Yes, our lab programmes are active across 30+ partner countries including the USA, UAE, Australia and several African nations."
+    }
+  ]
+}
