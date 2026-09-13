@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var formError = document.getElementById('rcFormError');
   var interestsError = document.getElementById('interestsError');
   var interestGrid = form.querySelector('.rc-check-grid');
+  var agreeInput = document.getElementById('agree');
+  var agreeWrap = document.getElementById('agreeWrap');
+  var agreeError = document.getElementById('agreeError');
   var modal = document.getElementById('rcSuccessModal');
   var modalClose = document.getElementById('rcModalClose');
   var regIdOutput = document.getElementById('rcRegIdOutput');
@@ -96,6 +99,15 @@ document.addEventListener('DOMContentLoaded', function () {
     updateStreamField();
   }
 
+  if (agreeInput) {
+    agreeInput.addEventListener('change', function () {
+      if (agreeInput.checked) {
+        if (agreeWrap) agreeWrap.classList.remove('rc-invalid');
+        if (agreeError) agreeError.style.display = 'none';
+      }
+    });
+  }
+
   // ---------- Interest area (single-select, highlight chosen card) ----------
   form.querySelectorAll('input[name="interest"]').forEach(function (radio) {
     radio.addEventListener('change', function () {
@@ -148,6 +160,12 @@ document.addEventListener('DOMContentLoaded', function () {
     interestsError.style.display = interestChecked ? 'none' : 'block';
     if (interestGrid) interestGrid.classList.toggle('rc-invalid', !interestChecked);
     if (!interestChecked) valid = false;
+
+    // terms & conditions checkbox
+    var agreeValid = !!(agreeInput && agreeInput.checked);
+    if (agreeWrap) agreeWrap.classList.toggle('rc-invalid', !agreeValid);
+    if (agreeError) agreeError.style.display = agreeValid ? 'none' : 'block';
+    if (!agreeValid) valid = false;
 
     // drive link: required (checked by the generic [required] loop above), and must look like a URL
     var driveLinkField = form.querySelector('#driveLink');

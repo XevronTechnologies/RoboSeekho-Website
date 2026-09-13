@@ -762,6 +762,9 @@ body.rc {
 }
 .rc-agree input { margin-top: 0.2rem; accent-color: var(--rc-blue); width: 16px; height: 16px; }
 .rc-agree a { color: var(--rc-blue-light); text-decoration: underline; }
+.rc-agree.rc-invalid { color: #f87171; }
+.rc-agree.rc-invalid input { outline: 1px solid #f87171; outline-offset: 2px; }
+#agreeError { color: #f87171; font-size: 0.78rem; margin-top: -1rem; margin-bottom: 1.5rem; }
 
 .rc-submit-row { display: flex; flex-direction: column; align-items: center; gap: 0.8rem; }
 .rc-form-banner {
