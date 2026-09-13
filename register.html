@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register &mdash; RoboSeekho National Innovation Challenge 2026</title>
+  <meta name="description"
+    content="Register for the RoboSeekho National Innovation Challenge 2026. Free registration, open to Class 6&ndash;12 students across India.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/competition.css">
+</head>
+
+<body class="rc">
+
+  <div class="rc-scroll-progress" id="rcScrollProgress"></div>
+
+  <!-- ================= HEADER ================= -->
+  <header class="rc-header">
+    <nav class="rc-nav container">
+      <a href="competition.html" class="rc-brand">
+        <img src="logo.png" alt="RoboSeekho logo">
+        <span>Robo<span class="accent">Seekho</span></span>
+      </a>
+
+      <ul class="rc-nav-links" id="rcNavLinks">
+        <li><a href="competition.html#home" class="rc-nav-link">Home</a></li>
+        <li><a href="competition.html#about" class="rc-nav-link">About</a></li>
+        <li><a href="competition.html#timeline" class="rc-nav-link">Timeline</a></li>
+        <li><a href="competition.html#prizes" class="rc-nav-link">Prizes</a></li>
+        <li><a href="competition.html#faqs" class="rc-nav-link">FAQs</a></li>
+        <li><a href="competition.html#contact" class="rc-nav-link">Contact</a></li>
+      </ul>
+
+      <div class="rc-nav-actions">
+        <a href="competition.html" class="rc-btn rc-btn-ghost">&larr; Back to Challenge Home</a>
+        <button class="rc-hamburger" id="rcHamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="rc-reg-hero">
+      <div class="container">
+        <span class="rc-eyebrow-sm">RoboSeekho National Innovation Challenge 2026</span>
+        <h1>Student Registration</h1>
+        <p>Fill in your details below to secure your spot. Registration is free and takes less than 3 minutes.</p>
+
+      </div>
+    </section>
+
+    <section class="rc-form-wrap">
+      <div class="container">
+        <form id="rcRegForm" class="rc-form-card" novalidate>
+
+          <div class="rc-form-banner error" id="rcFormError"></div>
+
+          <!-- ============ Student Information ============ -->
+          <div class="rc-form-section">
+            <div class="rc-form-section-title"><span class="badge">1</span> Student Information</div>
+
+            <div class="rc-field">
+              <label for="fullName">Full Name <span class="req">*</span></label>
+              <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+              <span class="rc-error">Please enter your full name.</span>
+            </div>
+
+            <div class="rc-form-row">
+              <div class="rc-field">
+                <label for="mobile">Mobile Number <span class="req">*</span></label>
+                <input type="tel" id="mobile" name="mobile" placeholder="10-digit mobile number" maxlength="10"
+                  required>
+                <span class="rc-error">Enter a valid 10-digit mobile number.</span>
+              </div>
+              <div class="rc-field">
+                <label for="whatsapp">WhatsApp Number <span class="req">*</span></label>
+                <input type="tel" id="whatsapp" name="whatsapp" placeholder="10-digit WhatsApp number" maxlength="10"
+                  required>
+                <label class="rc-check-inline"><input type="checkbox" id="sameAsMobile"> Same as Mobile Number</label>
+                <span class="rc-error">Enter a valid 10-digit WhatsApp number.</span>
+              </div>
+            </div>
+
+            <div class="rc-form-row">
+              <div class="rc-field">
+                <label for="email">Email Address <span class="req">*</span></label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                <span class="rc-error">Enter a valid email address.</span>
+              </div>
+              <div class="rc-field">
+                <label for="gender">Gender <span class="req">*</span></label>
+                <select id="gender" name="gender" required>
+                  <option value="">Select gender</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                  <option>Other</option>
+                </select>
+                <span class="rc-error">Please select your gender.</span>
+              </div>
+            </div>
+
+            <div class="rc-field">
+              <label for="dob">Date of Birth <span class="req">*</span></label>
+              <input type="date" id="dob" name="dob" required>
+              <span class="rc-error">Please enter your date of birth.</span>
+            </div>
+          </div>
+
+          <!-- ============ Academic Information ============ -->
+          <div class="rc-form-section">
+            <div class="rc-form-section-title"><span class="badge">2</span> Academic Information</div>
+
+            <div class="rc-form-row">
+              <div class="rc-field">
+                <label for="studentClass">Class <span class="req">*</span></label>
+                <select id="studentClass" name="studentClass" required>
+                  <option value="">Select class</option>
+                  <option>Class 6</option>
+                  <option>Class 7</option>
+                  <option>Class 8</option>
+                  <option>Class 9</option>
+                  <option>Class 10</option>
+                  <option>Class 11</option>
+                  <option>Class 12</option>
+                </select>
+                <span class="rc-error">Please select your class.</span>
+              </div>
+              <div class="rc-field">
+                <label for="board">Board <span class="req">*</span></label>
+                <select id="board" name="board" required>
+                  <option value="">Select board</option>
+                  <option>CBSE</option>
+                  <option>RBSE</option>
+                  <option>ICSE</option>
+                  <option>State Board</option>
+                </select>
+                <span class="rc-error">Please select your board.</span>
+              </div>
+            </div>
+
+            <div class="rc-field" id="streamWrap" style="display:none;">
+              <label for="stream" id="streamLabel">Stream <span class="req">*</span></label>
+              <select id="stream" name="stream">
+                <option value="">Select stream</option>
+                <option>Science (Maths)</option>
+                <option>Science (Biology)</option>
+                <option>Commerce</option>
+                <option>Arts</option>
+                <option>Other</option>
+              </select>
+              <span class="rc-error">Please select a stream.</span>
+            </div>
+
+            <div class="rc-field" id="streamOtherWrap" style="display:none;">
+              <label for="streamOther">Please specify your stream <span class="req">*</span></label>
+              <input type="text" id="streamOther" name="streamOther" placeholder="Enter your stream">
+              <span class="rc-error">Please specify your stream.</span>
+            </div>
+
+            <div class="rc-field">
+              <label for="school">School / Institution Name <span class="req">*</span></label>
+              <input type="text" id="school" name="school" placeholder="Enter your school or institution name" required>
+              <span class="rc-error">Please enter your school name.</span>
+            </div>
+
+            <div class="rc-form-row">
+              <div class="rc-field">
+                <label for="city">City <span class="req">*</span></label>
+                <input type="text" id="city" name="city" placeholder="Enter your city" required>
+                <span class="rc-error">Please enter your city.</span>
+              </div>
+              <div class="rc-field">
+                <label for="state">State <span class="req">*</span></label>
+                <select id="state" name="state" required>
+                  <option value="">Select state</option>
+                  <option>Andhra Pradesh</option>
+                  <option>Arunachal Pradesh</option>
+                  <option>Assam</option>
+                  <option>Bihar</option>
+                  <option>Chhattisgarh</option>
+                  <option>Goa</option>
+                  <option>Gujarat</option>
+                  <option>Haryana</option>
+                  <option>Himachal Pradesh</option>
+                  <option>Jharkhand</option>
+                  <option>Karnataka</option>
+                  <option>Kerala</option>
+                  <option>Madhya Pradesh</option>
+                  <option>Maharashtra</option>
+                  <option>Manipur</option>
+                  <option>Meghalaya</option>
+                  <option>Mizoram</option>
+                  <option>Nagaland</option>
+                  <option>Odisha</option>
+                  <option>Punjab</option>
+                  <option>Rajasthan</option>
+                  <option>Sikkim</option>
+                  <option>Tamil Nadu</option>
+                  <option>Telangana</option>
+                  <option>Tripura</option>
+                  <option>Uttar Pradesh</option>
+                  <option>Uttarakhand</option>
+                  <option>West Bengal</option>
+                  <option>Delhi (NCT)</option>
+                  <option>Jammu &amp; Kashmir</option>
+                  <option>Ladakh</option>
+                  <option>Chandigarh</option>
+                  <option>Puducherry</option>
+                  <option>Other</option>
+                </select>
+                <span class="rc-error">Please select your state.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============ Interest Area ============ -->
+          <div class="rc-form-section">
+            <div class="rc-form-section-title"><span class="badge">3</span> Selected Theme
+            </div>
+            <div class="rc-check-grid">
+              <label class="rc-check-option"><input type="radio" name="interest" value="Robotics"> Robotics</label>
+              <label class="rc-check-option"><input type="radio" name="interest" value="AI"> AI</label>
+              <label class="rc-check-option"><input type="radio" name="interest" value="Drones"> Drones</label>
+              <label class="rc-check-option"><input type="radio" name="interest" value="Electronics">
+                Electronics</label>
+              <label class="rc-check-option"><input type="radio" name="interest" value="Coding"> Coding</label>
+              <label class="rc-check-option"><input type="radio" name="interest" value="IoT"> IoT</label>
+            </div>
+            <span class="rc-error" id="interestsError" style="display:none; margin-top:0.6rem;">Please select an
+              interest area.</span>
+          </div>
+
+          <!-- ============ Confirmation ============ -->
+          <div class="rc-form-section">
+            <div class="rc-form-section-title"><span class="badge">4</span> Upload your Project Idea</div>
+
+            <div class="rc-field">
+              <label for="driveLink">Project Idea <span class="req">*</span></label>
+              <input type="url" id="driveLink" name="driveLink" required
+                placeholder="Paste a Google Drive / document link (portfolio, idea write-up, etc.)">
+              <span class="rc-error">Please enter a link (starting with https://).</span>
+            </div>
+
+            <label class="rc-agree">
+              <input type="checkbox" id="agree" name="agree" required>
+              <span>I agree to the <a href="#" target="_blank">competition rules</a> and <a href="#"
+                  target="_blank">privacy policy</a>. <span class="req">*</span></span>
+            </label>
+          </div>
+
+          <div class="rc-submit-row">
+            <button type="submit" class="rc-btn rc-btn-primary rc-btn-block" id="rcSubmitBtn">
+              <span class="rc-spinner"></span>
+              <span class="rc-btn-label">Submit Registration</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= SUCCESS MODAL ================= -->
+  <div class="rc-modal-overlay" id="rcSuccessModal">
+    <div class="rc-modal">
+      <div class="rc-modal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="4,12 9,17 20,6" />
+        </svg>
+      </div>
+      <h3>Registration Successful!</h3>
+      <p>Your registration ID has been generated. Save it &mdash; you'll need it later to submit your project.</p>
+      <div class="rc-reg-id" id="rcRegIdOutput">RSIC2026-0000</div>
+      <div class="rc-modal-actions">
+        <a href="competition.html" class="rc-btn rc-btn-ghost">Back to Home</a>
+        <button type="button" class="rc-btn rc-btn-primary" id="rcModalClose">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <button class="rc-back-top" id="rcBackTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+
+  <script src="js/competition.js"></script>
+  <script src="js/register.js"></script>
+</body>
+
+</html>
