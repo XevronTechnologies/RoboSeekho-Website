@@ -3,7 +3,7 @@
 // SETUP: after deploying the Google Apps Script Web App (see apps-script/SETUP.md),
 // paste its /exec URL below. Until you do, submissions cannot be saved.
 var RC_CONFIG = {
-  GAS_URL: 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE'
+  GAS_URL: 'https://script.google.com/macros/s/AKfycbzoNtRmkg-kSJ2YzEK6NoXOCmf7Na2SCHCMZFzHQrDlI853p-KPwvxvpCbJVsB8M3tDaQ/exec'
 };
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var modal = document.getElementById('rcSuccessModal');
   var modalClose = document.getElementById('rcModalClose');
   var regIdOutput = document.getElementById('rcRegIdOutput');
+  var copyRegIdBtn = document.getElementById('rcCopyRegId');
 
   var mobileInput = document.getElementById('mobile');
   var whatsappInput = document.getElementById('whatsapp');
@@ -261,5 +262,43 @@ document.addEventListener('DOMContentLoaded', function () {
     modalClose.addEventListener('click', function () {
       modal.classList.remove('show');
     });
+  }
+
+  if (copyRegIdBtn) {
+    copyRegIdBtn.addEventListener('click', function () {
+      var text = regIdOutput.textContent.trim();
+      if (!text) return;
+
+      function showCopied() {
+        var label = copyRegIdBtn.querySelector('span');
+        var original = label.textContent;
+        copyRegIdBtn.classList.add('copied');
+        label.textContent = 'Copied!';
+        setTimeout(function () {
+          copyRegIdBtn.classList.remove('copied');
+          label.textContent = original;
+        }, 1800);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(showCopied).catch(function () {
+          fallbackCopy(text, showCopied);
+        });
+      } else {
+        fallbackCopy(text, showCopied);
+      }
+    });
+  }
+
+  function fallbackCopy(text, onDone) {
+    var temp = document.createElement('textarea');
+    temp.value = text;
+    temp.style.position = 'fixed';
+    temp.style.opacity = '0';
+    document.body.appendChild(temp);
+    temp.focus();
+    temp.select();
+    try { document.execCommand('copy'); onDone(); } catch (e) { /* clipboard unavailable */ }
+    document.body.removeChild(temp);
   }
 });

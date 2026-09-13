@@ -829,6 +829,14 @@ body.rc {
 .rc-modal-icon svg { width: 32px; height: 32px; stroke: var(--rc-cyan); }
 .rc-modal h3 { font-size: 1.3rem; margin-bottom: 0.6rem; }
 .rc-modal p { color: var(--rc-text-dim); font-size: 0.9rem; margin-bottom: 1rem; }
+.rc-reg-id-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
 .rc-reg-id {
   display: inline-block;
   font-family: 'Space Grotesk', sans-serif;
@@ -838,9 +846,23 @@ body.rc {
   border: 1px dashed var(--rc-blue-light);
   padding: 0.6rem 1.2rem;
   border-radius: var(--rc-radius-sm);
-  margin-bottom: 1.5rem;
   letter-spacing: 0.03em;
 }
+.rc-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--rc-surface);
+  border: 1px solid var(--rc-border);
+  color: var(--rc-text-dim);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.55rem 0.85rem;
+  border-radius: var(--rc-radius-sm);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.rc-copy-btn:hover { border-color: var(--rc-blue-light); color: var(--rc-text); }
+.rc-copy-btn.copied { border-color: var(--rc-cyan); color: var(--rc-cyan); }
 .rc-modal-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
 
 /* =============================================================
