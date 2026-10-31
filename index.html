@@ -13,7 +13,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=2.2">
 </head>
 
 <body>
@@ -40,10 +40,11 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="nav-link active">Home</a></li>
         <li><a href="#labs" class="nav-link">Labs</a></li>
+        <li><a href="blogs.html" class="nav-link">Blogs &amp; Projects</a></li>
         <li><a href="why-us.html" class="nav-link">Why Us</a></li>
         <li><a href="process.html" class="nav-link">Process</a></li>
         <li><a href="impact.html" class="nav-link">Impact</a></li>
-        <li><a href="competition.html" class="nav-link">Innovation Challenge 2026</a></li>
+        <!-- <li><a href="competition.html" class="nav-link">Innovation Challenge 2026</a></li> -->
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
 
@@ -283,6 +284,46 @@
     </div>
   </section>
 
+  <!-- ================= BLOGS & MAKER PROJECTS (HACKSTER STYLE) ================= -->
+  <section class="blogs-section" id="blogs">
+    <div class="container">
+      <div class="blogs-header" data-reveal>
+        <span class="pill">🛠️ Maker Hub &amp; Engineering Blogs</span>
+        <h2>Build, Hack &amp; Learn: <span class="text-gradient">Robotics &amp; AI Projects</span></h2>
+        <p>
+          Step-by-step schematics, microcontroller projects, and deep-dive engineering tutorials
+          crafted for future-ready makers and young innovators.
+        </p>
+      </div>
+
+      <!-- Hackster Controls (Search, Sort) -->
+      <div class="blogs-controls" data-reveal>
+        <div class="blogs-controls-row" style="justify-content: flex-end;">
+          <div class="blogs-search-sort">
+            <div class="blogs-search-wrap">
+              <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="blogsSearch" class="blogs-search-input" placeholder="Search projects, tags, hardware..." autocomplete="off">
+              <button type="button" id="blogsSearchClear" class="blogs-search-clear" aria-label="Clear search">&times;</button>
+            </div>
+
+            <select id="blogsSort" class="blogs-sort-select" aria-label="Sort projects">
+              <option value="newest">⚡ Latest Builds</option>
+              <option value="title">🔤 Alphabetical (A–Z)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hackster Project Cards Grid -->
+      <div class="hackster-grid" id="hacksterGrid">
+        <!-- Rendered dynamically from data/blogs.json -->
+      </div>
+    </div>
+  </section>
+
   <!-- ================= FAQ ================= -->
   <section class="faq" id="faq">
     <div class="container">
@@ -317,9 +358,8 @@
         </div>
       </div>
 
-      <form class="contact-form" id="contactForm" data-reveal novalidate
-            name="contact-home" method="POST" action="/thank-you.html"
-            netlify data-netlify="true" data-netlify-honeypot="bot-field">
+      <form class="contact-form" id="contactForm" data-reveal novalidate name="contact-home" method="POST"
+        action="/thank-you.html" netlify data-netlify="true" data-netlify-honeypot="bot-field">
 
         <!-- Netlify hidden fields -->
         <input type="hidden" name="form-name" value="contact-home">
@@ -403,6 +443,7 @@
         <a href="why-us.html">Why Us</a>
         <a href="process.html">Process</a>
         <a href="impact.html">Impact</a>
+        <a href="blogs.html">Blogs &amp; Projects</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
         <a href="competition.html">Innovation Challenge 2026</a>
@@ -426,6 +467,7 @@
   </button>
 
   <script src="js/script.js"></script>
+  <script src="js/blogs.js?v=2.9"></script>
 </body>
 
 </html>

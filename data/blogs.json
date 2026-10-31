@@ -1,0 +1,878 @@
+[
+  {
+    "id": "robotic-arm-vision",
+    "title": "Building a 6-DOF Robotic Arm with Computer Vision Sorting",
+    "summary": "An intelligent robotic arm powered by Arduino and an OpenCV-driven Python camera feed that detects, sorts, and stacks colored components in real-time.",
+    "category": "Robotics",
+    "difficulty": "Intermediate",
+    "image": "images/blogs/robotic_arm_vision.jpg",
+    "date": "Oct 28, 2026",
+    "readTime": "6 min read",
+    "author": {
+      "name": "Aarav Sharma",
+      "role": "Robotics Mentor, RoboSeekho",
+      "avatar": "AS"
+    },
+    "tags": [
+      "Arduino Mega",
+      "OpenCV",
+      "Python",
+      "Servo MG996R",
+      "Inverse Kinematics"
+    ],
+    "stats": {
+      "respects": 142,
+      "views": 3280,
+      "comments": 29
+    },
+    "details": {
+      "story": "Industrial automation increasingly depends on smart sorting mechanisms where robotic manipulators perceive their environment before executing tasks. In this project designed for our high school AI & Robotics curriculum, students construct a 6-degree-of-freedom robotic manipulator armed with an overhead webcam. The Python script processes live frames using color thresholding and contour detection, sending Cartesian coordinates via serial communication to the Arduino microcontroller to calculate inverse kinematics on the fly.",
+      "hardware": [
+        {
+          "item": "Arduino Mega 2560 R3",
+          "qty": "1",
+          "purpose": "Inverse kinematics & PWM servo control"
+        },
+        {
+          "item": "MG996R High Torque Metal Servos",
+          "qty": "6",
+          "purpose": "Joint actuation"
+        },
+        {
+          "item": "Aluminium 6-DOF Arm Bracket Frame",
+          "qty": "1",
+          "purpose": "Structural chassis"
+        },
+        {
+          "item": "PCA9685 16-Channel 12-bit PWM Driver",
+          "qty": "1",
+          "purpose": "Dedicated servo power distribution"
+        },
+        {
+          "item": "5V 10A DC Regulated Power Supply",
+          "qty": "1",
+          "purpose": "High-current servo rail"
+        },
+        {
+          "item": "1080p USB Machine Vision Camera",
+          "qty": "1",
+          "purpose": "Object tracking & localization"
+        }
+      ],
+      "software": [
+        {
+          "name": "Arduino IDE 2.x",
+          "type": "Microcontroller firmware"
+        },
+        {
+          "name": "Python 3.11 with OpenCV & PySerial",
+          "type": "Vision processing stack"
+        },
+        {
+          "name": "RoboSeekho AI Connect",
+          "type": "Block-to-text algorithm visualization"
+        }
+      ],
+      "steps": [
+        "Assemble the aluminium 6-DOF chassis ensuring servo horns are properly calibrated at 90\u00b0 neutral position.",
+        "Wire the PCA9685 PWM shield to the Arduino Mega via I2C (SDA -> Pin 20, SCL -> Pin 21) with common ground.",
+        "Mount the USB camera directly above the workspace at a fixed 45cm focal distance.",
+        "Calibrate camera distortion matrix and configure HSV color thresholds in OpenCV.",
+        "Execute the Python controller script to stream target coordinates to the Arduino."
+      ],
+      "codeSnippet": "// Calculate servo angles from coordinates\nvoid moveToTarget(float x, float y, float z) {\n  float baseAngle = atan2(y, x) * 180.0 / PI;\n  pwm.setPWM(BASE_SERVO, 0, mapAngleToPulse(baseAngle));\n  // Forward kinematics & shoulder trajectory\n  delay(150);\n}",
+      "storySections": [
+        {
+          "id": "the-idea",
+          "title": "The Idea",
+          "text": "Industrial automation increasingly depends on smart sorting mechanisms where robotic manipulators perceive their environment before executing physical tasks. In this project designed for our high school AI & Robotics curriculum, students construct a 6-degree-of-freedom robotic manipulator armed with an overhead webcam. The Python vision script processes live frames using color thresholding and contour detection, sending Cartesian coordinates via serial communication to the Arduino microcontroller to calculate inverse kinematics on the fly."
+        },
+        {
+          "id": "how-it-works",
+          "title": "How It Works",
+          "text": "The overhead camera continuously grabs 1080p frames at 30 FPS. The Python script isolates target objects using HSV thresholding, computes centroid centroids (Cx, Cy), and maps pixel coordinates to physical millimeter coordinates on the work surface. These target (X, Y, Z) vectors are sent over USB serial to the Arduino Mega, which runs trigonometric inverse kinematics algorithms to calculate exact pulse-width modulation values for each of the 6 MG996R metal-gear servos."
+        },
+        {
+          "id": "assembling-electronics",
+          "title": "Assembling the Electronics",
+          "text": "Because 6 high-torque metal servos draw up to 6A stall current under load, a dedicated PCA9685 16-channel 12-bit PWM driver is powered directly by an external 5V 10A DC regulated power supply. The Arduino Mega communicates with the PCA9685 driver over the I2C bus (Pin 20 SDA, Pin 21 SCL) with a shared common ground, ensuring glitch-free actuation without microcontroller resets."
+        },
+        {
+          "id": "programming-testing",
+          "title": "Programming and Testing",
+          "text": "We first flashed our servo calibration sketch to center all servos at exactly 90 degrees before fastening mechanical horn brackets. The Python OpenCV controller tests color identification by sorting blue, red, and yellow pucks into designated drop-off bins with sub-centimeter positional accuracy."
+        }
+      ],
+      "handTools": [
+        {
+          "name": "3D Printer (PETG / PLA)",
+          "purpose": "Custom gripper and camera mount fabrication"
+        },
+        {
+          "name": "Soldering Station 60W",
+          "purpose": "High-current servo power rail wiring"
+        },
+        {
+          "name": "Precision Metric Allen Key Set",
+          "purpose": "Chassis servo horn fastening"
+        }
+      ],
+      "customParts": {
+        "title": "Robotic Arm 6-DOF Brackets & Gripper CAD",
+        "filename": "robotic_arm_gripper_v2.stl",
+        "type": "3D CAD / STL",
+        "size": "4.2 MB",
+        "author": "RoboSeekho Labs"
+      },
+      "schematic": {
+        "title": "PCA9685 PWM Shield & Arduino Mega I2C Bus Schematics",
+        "filename": "robotic_arm_circuit_schematic.png",
+        "description": "Wiring diagram connecting Arduino Mega 2560 to PCA9685 PWM driver, 5V 10A external PSU, and 6x MG996R servos."
+      }
+    },
+    "channels": [
+      {
+        "name": "Arduino",
+        "icon": "arduino"
+      },
+      {
+        "name": "Python",
+        "icon": "python"
+      },
+      {
+        "name": "OpenCV",
+        "icon": "opencv"
+      },
+      {
+        "name": "Robotics",
+        "icon": "robotics"
+      }
+    ]
+  },
+  {
+    "id": "autonomous-ai-rover",
+    "title": "Autonomous Obstacle Avoidance AI Rover with LiDAR & SLAM",
+    "summary": "Build an intelligent terrain rover that creates 2D floor plans using a 360\u00b0 LiDAR sensor and navigates unknown rooms autonomously.",
+    "category": "AI & Vision",
+    "difficulty": "Advanced",
+    "image": "images/blogs/autonomous_ai_rover.jpg",
+    "date": "Oct 24, 2026",
+    "readTime": "8 min read",
+    "author": {
+      "name": "Priya Nair",
+      "role": "AI Curriculum Specialist",
+      "avatar": "PN"
+    },
+    "tags": [
+      "ESP32-S3",
+      "RPLiDAR A1",
+      "ROS 2",
+      "SLAM",
+      "Motor Drivers"
+    ],
+    "stats": {
+      "respects": 215,
+      "views": 4890,
+      "comments": 41
+    },
+    "details": {
+      "story": "Simultaneous Localization and Mapping (SLAM) is the cornerstone of autonomous self-driving cars, warehouse AGVs, and interplanetary rovers. This project teaches students how to break down complex sensor fusion into tangible building blocks. By integrating an ESP32 microcontroller with a 360\u00b0 2D laser scanner, students visualize real-time point clouds on a local web dashboard and program reactive collision-avoidance algorithms.",
+      "hardware": [
+        {
+          "item": "ESP32-S3 Dual Core Dev Module",
+          "qty": "1",
+          "purpose": "Sensor streaming & Wi-Fi telemetry"
+        },
+        {
+          "item": "RPLiDAR A1M8 360\u00b0 Laser Range Scanner",
+          "qty": "1",
+          "purpose": "12m radius distance mapping"
+        },
+        {
+          "item": "L298N Dual H-Bridge Motor Controller",
+          "qty": "1",
+          "purpose": "DC geared motor driving"
+        },
+        {
+          "item": "12V TT Geared DC Motors with Optical Encoders",
+          "qty": "4",
+          "purpose": "Odometry tracking"
+        },
+        {
+          "item": "3S 11.1V 2200mAh LiPo Battery Pack",
+          "qty": "1",
+          "purpose": "Portable high-density power"
+        }
+      ],
+      "software": [
+        {
+          "name": "ROS 2 Humble / Cartographer SLAM",
+          "type": "Mapping framework"
+        },
+        {
+          "name": "ESP-IDF / Arduino Framework",
+          "type": "Microcontroller firmware"
+        },
+        {
+          "name": "Foxglove Studio",
+          "type": "Point-cloud telemetry visualizer"
+        }
+      ],
+      "steps": [
+        "Fabricate the 4WD acrylic/aluminium chassis with suspension dampeners for smooth sensor rotation.",
+        "Connect RPLiDAR TX/RX to ESP32 Hardware Serial2 pins at 115200 baud.",
+        "Implement wheel encoder pulse interrupts to calculate dead-reckoning trajectory.",
+        "Stream polar coordinate vectors via WebSocket to the host computer.",
+        "Run Hector SLAM / Cartographer node to render live 2D obstacle heatmaps."
+      ],
+      "codeSnippet": "// Read RPLiDAR scan packet\nvoid processLiDARData() {\n  if (lidar.isOpen()) {\n    rplidar_response_measurement_node_hq_t nodes[8192];\n    size_t count = sizeof(nodes)/sizeof(nodes[0]);\n    lidar.getScanData(nodes, count);\n    filterObstacles(nodes, count);\n  }\n}",
+      "storySections": [
+        {
+          "id": "the-idea",
+          "title": "The Idea",
+          "text": "Simultaneous Localization and Mapping (SLAM) is the cornerstone of autonomous self-driving vehicles, warehouse robots, and planetary rovers. This project demystifies complex sensor fusion into hands-on building blocks for students. By combining an ESP32 microcontroller with a 360-degree laser range scanner, students construct a rover that explores unknown indoor spaces and compiles 2D floor plans in real-time."
+        },
+        {
+          "id": "how-it-works",
+          "title": "How It Works",
+          "text": "The RPLiDAR A1 spins at 5.5 Hz, sending 8,000 laser distance points per second over UART serial to the ESP32. The microcontroller streams the polar coordinate packet over high-speed WebSocket Wi-Fi to a host workstation running ROS 2 Cartographer SLAM. The node calculates loop closures and builds occupancy grids while reactive PID controllers steer TT geared DC motors away from obstacles."
+        },
+        {
+          "id": "assembling-electronics",
+          "title": "Assembling the Electronics",
+          "text": "A 3S 11.1V 2200mAh LiPo battery pack delivers raw voltage to an LM2596 buck converter tuned to 5.0V for the ESP32 and LiDAR, while motor power is routed through an L298N dual H-bridge motor driver. Hall-effect wheel encoders are wired to interrupt pins (GPIO 18, 19, 21, 22) for high-precision odometry feedback."
+        },
+        {
+          "id": "programming-testing",
+          "title": "Programming and Testing",
+          "text": "Foxglove Studio visualizes real-time 2D laser point clouds. Students can watch live laser scans paint hallway walls, doorways, and obstacles, tuning the collision threshold so the rover smoothly routes around chair legs and moving objects without operator intervention."
+        }
+      ],
+      "handTools": [
+        {
+          "name": "Laser Cutter / Acrylic CNC",
+          "purpose": "Dual-tier rover chassis fabrication"
+        },
+        {
+          "name": "Digital Multimeter",
+          "purpose": "LiPo battery & buck converter voltage tuning"
+        },
+        {
+          "name": "Wire Stripper & Crimper",
+          "purpose": "JST encoder harness wiring"
+        }
+      ],
+      "customParts": {
+        "title": "Dual-Deck Acrylic Chassis & LiDAR Vibration Dampener",
+        "filename": "ai_rover_chassis_plates.dxf",
+        "type": "DXF / CAD",
+        "size": "2.8 MB",
+        "author": "RoboSeekho Labs"
+      },
+      "schematic": {
+        "title": "ESP32-S3 to RPLiDAR A1M8 & L298N Wiring Diagram",
+        "filename": "ai_rover_schematic.png",
+        "description": "Full power distribution, UART serial, and encoder interrupt connections."
+      }
+    },
+    "channels": [
+      {
+        "name": "ESP32",
+        "icon": "esp32"
+      },
+      {
+        "name": "ROS 2",
+        "icon": "ros"
+      },
+      {
+        "name": "LiDAR",
+        "icon": "lidar"
+      },
+      {
+        "name": "Robotics",
+        "icon": "robotics"
+      }
+    ]
+  },
+  {
+    "id": "iot-smart-agriculture",
+    "title": "Smart IoT Environmental & Greenhouse Station with OLED Telemetry",
+    "summary": "A solar-assisted environmental telemetry node that tracks soil moisture, ambient humidity, temperature, and sun exposure with live cloud logging.",
+    "category": "IoT & Embedded",
+    "difficulty": "Beginner",
+    "image": "images/blogs/iot_smart_station.jpg",
+    "date": "Oct 19, 2026",
+    "readTime": "5 min read",
+    "author": {
+      "name": "Devendra Verma",
+      "role": "IoT Lab Architect",
+      "avatar": "DV"
+    },
+    "tags": [
+      "ESP32",
+      "DHT22",
+      "Capacitive Soil Sensor",
+      "MQTT",
+      "Solar Panel"
+    ],
+    "stats": {
+      "respects": 98,
+      "views": 2110,
+      "comments": 18
+    },
+    "details": {
+      "story": "Global agriculture faces intense climate challenges. In this Atal Tinkering Lab staple project, young innovators construct an automated plant health monitoring device. Utilizing capacitive corrosion-resistant soil sensors, a precision DHT22 sensor, and an I2C OLED display, the station triggers automatic peristaltic drip irrigation whenever soil moisture falls below threshold levels.",
+      "hardware": [
+        {
+          "item": "ESP32 NodeMCU Wi-Fi / BLE Board",
+          "qty": "1",
+          "purpose": "Main controller & MQTT gateway"
+        },
+        {
+          "item": "Capacitive Soil Moisture Sensor v1.2",
+          "qty": "1",
+          "purpose": "Corrosion-proof analog moisture read"
+        },
+        {
+          "item": "DHT22 Digital Temperature & Humidity Sensor",
+          "qty": "1",
+          "purpose": "Ambient climate monitoring"
+        },
+        {
+          "item": "0.96 inch I2C OLED Display (128x64)",
+          "qty": "1",
+          "purpose": "Local realtime status visualization"
+        },
+        {
+          "item": "5V Relay Module & Submersible Micro Pump",
+          "qty": "1",
+          "purpose": "Automated drip irrigation"
+        },
+        {
+          "item": "6V 2W Solar Cell + TP4056 Charger",
+          "qty": "1",
+          "purpose": "Sustainable energy harvesting"
+        }
+      ],
+      "software": [
+        {
+          "name": "Adafruit SSD1306 & GFX Libraries",
+          "type": "OLED rendering"
+        },
+        {
+          "name": "PubSubClient MQTT",
+          "type": "Cloud telemetry data pipe"
+        },
+        {
+          "name": "ThingsBoard / Adafruit IO Dashboard",
+          "type": "Web analytics visualization"
+        }
+      ],
+      "steps": [
+        "Calibrate capacitive sensor in dry air (raw 3400) and full water submersion (raw 1300).",
+        "Wire OLED display to ESP32 Pin 21 (SDA) and Pin 22 (SCL).",
+        "Configure Wi-Fi credentials and publish sensor readings to MQTT topic every 30 seconds.",
+        "Add hysteresis logic to relay control to prevent erratic pump cycling.",
+        "Hook up solar panel with diode protection to charge the 18650 lithium battery."
+      ],
+      "codeSnippet": "// Soil moisture trigger logic\nint rawSoil = analogRead(SOIL_PIN);\nfloat moisturePct = map(rawSoil, AIR_VAL, WATER_VAL, 0, 100);\nif (moisturePct < 35.0) {\n  digitalWrite(RELAY_PUMP, HIGH); // Water the plant\n  displayWaterAlert();\n}",
+      "storySections": [
+        {
+          "id": "the-idea",
+          "title": "The Idea",
+          "text": "Modern agriculture faces extreme climate variability and water shortages. In this Atal Tinkering Lab staple project, young innovators construct an automated plant health monitoring device. Utilizing corrosion-resistant capacitive soil sensors, precision DHT22 climate sensors, and an I2C OLED display, the station triggers automatic peristaltic drip irrigation whenever soil moisture drops below threshold levels."
+        },
+        {
+          "id": "how-it-works",
+          "title": "How It Works",
+          "text": "The station samples soil capacitance, ambient temperature, relative humidity, and solar light intensity every 15 seconds. Data is rendered on the local 0.96 inch SSD1306 OLED screen and simultaneously published over MQTT to a cloud dashboard. If moisture drops below 35%, a 5V relay energizes the submersible water pump for 4 seconds, followed by a soak delay to evaluate water absorption."
+        },
+        {
+          "id": "assembling-electronics",
+          "title": "Assembling the Electronics",
+          "text": "Power is provided by a 6V 2W monocrystalline solar cell charging an 18650 lithium-ion cell via a TP4056 module with over-discharge protection. An ultra-low dropout 3.3V regulator powers the ESP32 in deep-sleep mode, enabling weeks of off-grid operation."
+        },
+        {
+          "id": "programming-testing",
+          "title": "Programming and Testing",
+          "text": "Calibration was performed by taking baseline analog readings in dry air (raw 3400) and completely saturated soil (raw 1300). Hysteresis thresholds were programmed in firmware to prevent pump chatter during slight soil settling."
+        }
+      ],
+      "handTools": [
+        {
+          "name": "3D Printer (PETG)",
+          "purpose": "IP54 Weatherproof greenhouse enclosure"
+        },
+        {
+          "name": "Silicone Sealant & Gaskets",
+          "purpose": "Outdoor sensor moisture protection"
+        },
+        {
+          "name": "Soldering Iron",
+          "purpose": "TP4056 & solar lead connections"
+        }
+      ],
+      "customParts": {
+        "title": "Weatherproof Soil Station & Solar Mount Enclosure",
+        "filename": "iot_station_enclosure.stl",
+        "type": "3D CAD / STL",
+        "size": "5.1 MB",
+        "author": "RoboSeekho Labs"
+      },
+      "schematic": {
+        "title": "ESP32 Solar Harvest, OLED & Relay Pump Schematics",
+        "filename": "iot_agriculture_schematic.png",
+        "description": "Complete circuit schematic including TP4056 charger, 18650 cell, and relay flyback diode."
+      }
+    },
+    "channels": [
+      {
+        "name": "ESP32",
+        "icon": "esp32"
+      },
+      {
+        "name": "IoT",
+        "icon": "iot"
+      },
+      {
+        "name": "Sensors",
+        "icon": "sensors"
+      },
+      {
+        "name": "Solar",
+        "icon": "solar"
+      }
+    ]
+  },
+  {
+    "id": "vr-physics-simulation",
+    "title": "Interactive VR Physics & Mechanical Engineering Lab with Meta Quest",
+    "summary": "How we deploy immersive 3D virtual reality simulations that let students disassemble complex jet engines and planetary gear sets in zero-risk environments.",
+    "category": "AR / VR",
+    "difficulty": "Intermediate",
+    "image": "images/blogs/vr_stem_lab.jpg",
+    "date": "Oct 15, 2026",
+    "readTime": "7 min read",
+    "author": {
+      "name": "Dr. Rohit Saxena",
+      "role": "Head of Immersive Learning",
+      "avatar": "RS"
+    },
+    "tags": [
+      "Meta Quest 3",
+      "Unity 3D",
+      "WebXR",
+      "Physics Engine",
+      "3D CAD"
+    ],
+    "stats": {
+      "respects": 177,
+      "views": 3720,
+      "comments": 23
+    },
+    "details": {
+      "story": "Traditional textbook diagrams fail to convey how torque transfers through planetary gearboxes or how magnetic flux induces eddy currents. Through standalone Meta Quest VR headsets deployed in our AR/VR labs, students step inside complex machinery, pause time, alter gravity parameters, and manipulate microscopic atoms with their bare hands.",
+      "hardware": [
+        {
+          "item": "Meta Quest 3 Standalone Headsets",
+          "qty": "10",
+          "purpose": "Spatial 6-DoF tracking & color passthrough"
+        },
+        {
+          "item": "UV-C Sanitizing Multi-Dock Charging Cart",
+          "qty": "1",
+          "purpose": "Fleet power & classroom hygiene"
+        },
+        {
+          "item": "Dedicated Wi-Fi 6 Dedicated Access Point",
+          "qty": "1",
+          "purpose": "Multi-user synchronized session casting"
+        }
+      ],
+      "software": [
+        {
+          "name": "Unity 2024 LTS + OpenXR Plugin",
+          "type": "Interactive simulation engine"
+        },
+        {
+          "name": "RoboSeekho VR Suite v3.2",
+          "type": "Curriculum modules for Physics & Mechanics"
+        },
+        {
+          "name": "SideQuest / MDM Fleet Manager",
+          "type": "Kiosk mode lab deployment"
+        }
+      ],
+      "steps": [
+        "Set up Guardian boundaries and enable Kiosk mode for seamless student onboarding.",
+        "Import SolidWorks CAD models into Unity with optimized decimation algorithms.",
+        "Apply PhysX continuous collision detection and realistic inertia tensor calculations.",
+        "Incorporate spatial audio cues for gear mesh friction and pneumatic pressure drops.",
+        "Implement educator dashboard for real-time progress assessment and synchronized multi-headset triggers."
+      ],
+      "codeSnippet": "// Unity OpenXR interaction event\npublic void OnGearGrab(SelectEnterEventArgs args) {\n  HapticFeedback.SendImpulse(args.interactorObject, 0.4f, 0.1f);\n  CalculateTorqueTransfer();\n}",
+      "storySections": [
+        {
+          "id": "the-idea",
+          "title": "The Idea",
+          "text": "Traditional 2D textbook diagrams fail to convey how torque transfers through planetary gearboxes or how magnetic flux induces eddy currents. Through standalone Meta Quest VR headsets deployed in our AR/VR labs, students step inside complex machinery, pause time, alter gravity parameters, and manipulate microscopic atoms with their bare hands in zero-risk environments."
+        },
+        {
+          "id": "how-it-works",
+          "title": "How It Works",
+          "text": "The simulation uses Unity 2024 LTS with the OpenXR plugin and PhysX physics engine. Students interact with gear teeth, pistons, and magnetic coils using ergonomic hand tracking or 6-DoF controllers with precision haptic feedback pulses simulating mechanical friction and gear teeth mesh."
+        },
+        {
+          "id": "assembling-electronics",
+          "title": "Assembling the Electronics",
+          "text": "A dedicated Wi-Fi 6 access point creates a low-latency local network inside the lab, allowing the educator's tablet to mirror headsets, trigger simulated mechanical failures (e.g. sheared bolts or bearing seizures), and view real-time student quiz metrics."
+        },
+        {
+          "id": "programming-testing",
+          "title": "Programming and Testing",
+          "text": "CAD assemblies from SolidWorks were decimated using Blender to retain visual fidelity while running smoothly at 90 FPS on mobile XR chipsets. Spatial audio triggers enhance spatial presence when mechanisms engage."
+        }
+      ],
+      "handTools": [
+        {
+          "name": "UV-C Sanitizing Station",
+          "purpose": "Fleet hygiene between classroom rotations"
+        },
+        {
+          "name": "Multi-Port USB-C Charging Hub",
+          "purpose": "Fast charging 10 headsets simultaneously"
+        }
+      ],
+      "customParts": {
+        "title": "3D CAD Jet Engine & Planetary Gear Model Assets",
+        "filename": "jet_engine_assembly.fbx",
+        "type": "FBX / 3D CAD",
+        "size": "18.4 MB",
+        "author": "RoboSeekho Labs"
+      },
+      "schematic": {
+        "title": "OpenXR Interaction & Classroom Casting Architecture",
+        "filename": "vr_lab_network_topology.png",
+        "description": "Wi-Fi 6 multi-headset casting and educator dashboard topology."
+      }
+    },
+    "channels": [
+      {
+        "name": "Unity 3D",
+        "icon": "unity"
+      },
+      {
+        "name": "Meta Quest",
+        "icon": "quest"
+      },
+      {
+        "name": "VR",
+        "icon": "vr"
+      },
+      {
+        "name": "CAD",
+        "icon": "cad"
+      }
+    ]
+  },
+  {
+    "id": "diy-carbon-quadcopter",
+    "title": "Custom Carbon-Fiber Quadcopter Drone with Optical Flow Stabilization",
+    "summary": "Design and assemble an indoor-safe quadcopter flight platform with brushless ESCs, Betaflight firmware, and downward optical flow hovering.",
+    "category": "Drones",
+    "difficulty": "Advanced",
+    "image": "images/blogs/drone_autopilot_build.jpg",
+    "date": "Oct 10, 2026",
+    "readTime": "9 min read",
+    "author": {
+      "name": "Karan Malhotra",
+      "role": "Avionics & Drone Instructor",
+      "avatar": "KM"
+    },
+    "tags": [
+      "Betaflight",
+      "F405 Flight Controller",
+      "Brushless Motors",
+      "Optical Flow",
+      "LiPo 4S"
+    ],
+    "stats": {
+      "respects": 194,
+      "views": 4120,
+      "comments": 35
+    },
+    "details": {
+      "story": "Drone technology is transforming surveying, disaster management, and precision agriculture. In our senior STEM tinkering labs, students delve into PID tuning, aerodynamic thrust ratios, and flight dynamics. This hands-on build walks students through soldering high-frequency power distribution boards, configuring brushless motor timing, and setting up optical flow sensors for GPS-denied indoor hovering.",
+      "hardware": [
+        {
+          "item": "Carbon Fiber 210mm True-X Frame",
+          "qty": "1",
+          "purpose": "Rigid vibration-resistant airframe"
+        },
+        {
+          "item": "SpeedyBee F405 V4 Flight Controller",
+          "qty": "1",
+          "purpose": "Core IMU, barometer & MCU"
+        },
+        {
+          "item": "55A 4-in-1 BLHeli_S ESC Stack",
+          "qty": "1",
+          "purpose": "Motor electronic speed regulation"
+        },
+        {
+          "item": "2207 2450KV Brushless Motors",
+          "qty": "4",
+          "purpose": "High-efficiency propulsion"
+        },
+        {
+          "item": "PMW3901 Optical Flow & VL53L1X LiDAR Combo",
+          "qty": "1",
+          "purpose": "Precision GPS-denied altitude & position hold"
+        },
+        {
+          "item": "4S 1500mAh 100C High Discharge LiPo",
+          "qty": "1",
+          "purpose": "Flight battery pack"
+        }
+      ],
+      "software": [
+        {
+          "name": "Betaflight Configurator 10.10",
+          "type": "Flight controller tuning & port mapping"
+        },
+        {
+          "name": "BLHeliSuite32",
+          "type": "Bidirectional DShot & RPM filter setup"
+        },
+        {
+          "name": "EdgeTX Radio Firmware",
+          "type": "2.4GHz ELRS RC protocol configuration"
+        }
+      ],
+      "steps": [
+        "Solder XT60 power lead and low-ESR 35V 1000uF capacitor to absorb motor voltage spikes.",
+        "Mount brushless motors, ensuring diagonal pairs spin clockwise and counter-clockwise respectively.",
+        "Connect optical flow sensor to UART6 with telemetry enabled in Betaflight ports.",
+        "Calibrate accelerometer and configure failsafe disarm triggers.",
+        "Tune Roll, Pitch, and Yaw PID loops for razor-sharp indoor hover stability."
+      ],
+      "codeSnippet": "# Betaflight CLI optical flow configuration\nset optflow_hardware = PMW3901\nset rangefinder_hardware = VL53L1X\nset hover_assist_mode = ENABLED\nsave",
+      "storySections": [
+        {
+          "id": "the-idea",
+          "title": "The Idea",
+          "text": "Drone technology is transforming surveying, disaster management, and precision agriculture. In our senior STEM tinkering labs, students delve into PID tuning, aerodynamic thrust ratios, and flight dynamics. This hands-on build walks students through soldering high-frequency power distribution boards, configuring brushless motor timing, and setting up optical flow sensors for GPS-denied indoor hovering."
+        },
+        {
+          "id": "how-it-works",
+          "title": "How It Works",
+          "text": "The SpeedyBee F405 flight controller samples its BMI270 gyro at 3.2 kHz, running high-speed PID loops that send DShot600 digital pulse packets to 55A ESCs. A downward PMW3901 optical flow camera tracks ground textures while a VL53L1X time-of-flight laser altimeter holds altitude, allowing rock-solid indoor hovering without GPS satellites."
+        },
+        {
+          "id": "assembling-electronics",
+          "title": "Assembling the Electronics",
+          "text": "High-temperature silicone wires (14 AWG) connect the XT60 connector to the 4-in-1 ESC board. A low-ESR 35V 1000uF electrolytic capacitor absorbs inductive voltage spikes caused by active motor braking. Motors are soldered directly to copper pads with clean solder fillets."
+        },
+        {
+          "id": "programming-testing",
+          "title": "Programming and Testing",
+          "text": "Betaflight 10.10 Configurator was used to map motor rotation directions (Props In configuration), verify ELRS radio channel end-points (1000-2000us), and configure two-stage failsafe disarm triggers for student flight safety."
+        }
+      ],
+      "handTools": [
+        {
+          "name": "High-Wattage Soldering Station (80W)",
+          "purpose": "Thick copper ESC power pad soldering"
+        },
+        {
+          "name": "Digital Pitch Gauge & Prop Balancer",
+          "purpose": "Vibration reduction & motor balance"
+        },
+        {
+          "name": "Smoke Stopper Fuse",
+          "purpose": "Short-circuit protection during initial bench power-up"
+        }
+      ],
+      "customParts": {
+        "title": "TPU Optical Flow & Camera Crash Protection Mounts",
+        "filename": "quadcopter_tpu_mounts.stl",
+        "type": "3D CAD / STL",
+        "size": "3.4 MB",
+        "author": "RoboSeekho Labs"
+      },
+      "schematic": {
+        "title": "F405 Flight Controller & 4-in-1 ESC Wiring Diagram",
+        "filename": "quadcopter_wiring_schematic.png",
+        "description": "UART port mapping for ELRS receiver, Optical Flow sensor, and VTX."
+      }
+    },
+    "channels": [
+      {
+        "name": "Betaflight",
+        "icon": "betaflight"
+      },
+      {
+        "name": "Drones",
+        "icon": "drone"
+      },
+      {
+        "name": "Avionics",
+        "icon": "avionics"
+      },
+      {
+        "name": "Robotics",
+        "icon": "robotics"
+      }
+    ]
+  },
+  {
+    "id": "bionic-hand-prosthetic",
+    "title": "3D-Printed Bionic Prosthetic Hand with Flex Sensor Teleoperation",
+    "summary": "A wearable sensory glove that mirrors human finger motion to articulate a 3D-printed tendon-driven bionic hand using micro servos.",
+    "category": "Prosthetics",
+    "difficulty": "Intermediate",
+    "image": "images/blogs/bionic_hand_project.jpg",
+    "date": "Oct 05, 2026",
+    "readTime": "6 min read",
+    "author": {
+      "name": "Sneha Kulkarni",
+      "role": "Biomedical & CAD Specialist",
+      "avatar": "SK"
+    },
+    "tags": [
+      "Arduino Uno",
+      "Flex Sensors",
+      "3D Printing PETG",
+      "Micro Servos",
+      "Bio-Mechanics"
+    ],
+    "stats": {
+      "respects": 230,
+      "views": 5340,
+      "comments": 47
+    },
+    "details": {
+      "story": "Empowering students to solve real-world accessibility challenges brings purpose to STEM education. In this project, high school students use CAD modelling in Onshape to print ergonomic phalanges in tough PETG filament, thread flexible braided fishing line as anatomical tendons, and attach 2.2-inch conductive flex sensors to a fabric glove. Every flex of the user's hand is instantly mirrored by the bionic replica.",
+      "hardware": [
+        {
+          "item": "Arduino Uno R3 / Nano",
+          "qty": "2",
+          "purpose": "Transmitter glove & receiver hand controllers"
+        },
+        {
+          "item": "2.2 inch Conductive Flex Sensors",
+          "qty": "5",
+          "purpose": "Finger joint curvature sensing"
+        },
+        {
+          "item": "SG90 / MG90S Metal Gear Micro Servos",
+          "qty": "5",
+          "purpose": "Individual tendon pulling actuators"
+        },
+        {
+          "item": "NRF24L01+ 2.4GHz Wireless Transceiver",
+          "qty": "2",
+          "purpose": "Low-latency telemetry link"
+        },
+        {
+          "item": "3D-Printed Anatomical Hand & Forearm (PETG)",
+          "qty": "1",
+          "purpose": "Lightweight prosthetic chassis"
+        },
+        {
+          "item": "50lb Braided Kevlar/Spectra Tendon Line",
+          "qty": "1",
+          "purpose": "Non-stretch tendon pull transmission"
+        }
+      ],
+      "software": [
+        {
+          "name": "Arduino IDE & RF24 Library",
+          "type": "Wireless communication pipeline"
+        },
+        {
+          "name": "Onshape & PrusaSlicer",
+          "type": "Parametric CAD & 3D print generation"
+        },
+        {
+          "name": "Processing.org",
+          "type": "Real-time hand skeleton visualization"
+        }
+      ],
+      "steps": [
+        "Slice and 3D print finger phalanges with 0.15mm layer height and 40% infill for joint durability.",
+        "Assemble fingers using elastic shock cords for passive extension and Kevlar lines for active flexion.",
+        "Sew flex sensors onto the control glove along knuckles with heat-shrink reinforcement.",
+        "Map analog voltage dividers (10k ohm reference resistor) from flex sensors to servo angles (0\u00b0-180\u00b0).",
+        "Calibrate resting hand offset values in EEPROM memory."
+      ],
+      "codeSnippet": "// Map glove sensor voltage to servo angles\nfor(int i = 0; i < 5; i++) {\n  int raw = analogRead(flexPins[i]);\n  int angle = map(raw, flatResistance[i], bentResistance[i], 0, 180);\n  angle = constrain(angle, 0, 180);\n  servos[i].write(angle);\n}",
+      "storySections": [
+        {
+          "id": "the-idea",
+          "title": "The Idea",
+          "text": "Empowering students to solve real-world accessibility challenges brings profound purpose to STEM education. In this project, high school students use CAD modelling in Onshape to print ergonomic finger phalanges in tough PETG filament, thread flexible braided Spectra lines as anatomical tendons, and attach 2.2-inch conductive flex sensors to a wearable control glove. Every flex of the user's hand is instantly mirrored by the bionic replica."
+        },
+        {
+          "id": "how-it-works",
+          "title": "How It Works",
+          "text": "When a finger bends, the conductive carbon flex sensor changes its electrical resistance from 25k ohms (flat) to over 65k ohms (90 degree bend). The Arduino transmitter reads the resulting voltage divider signals, normalizes them between 0 and 180 degrees, and transmits 5-byte data packets via 2.4GHz NRF24L01+ transceivers to the bionic hand receiver."
+        },
+        {
+          "id": "assembling-electronics",
+          "title": "Assembling the Electronics",
+          "text": "Five metal-gear MG90S micro servos are anchored in the forearm chassis. Elastic silicone shock cords provide passive finger extension, while braided Spectra lines tied to servo horn pulleys provide active finger flexion, mimicking human flexor digitorum muscles."
+        },
+        {
+          "id": "programming-testing",
+          "title": "Programming and Testing",
+          "text": "We implemented moving-average filtering in Arduino firmware to filter out muscle tremors. Calibration offsets for flat and bent positions are stored in EEPROM, allowing user calibration without reflashing firmware."
+        }
+      ],
+      "handTools": [
+        {
+          "name": "3D Printer (PETG)",
+          "purpose": "Anatomical bone structure printing (0.15mm layer height)"
+        },
+        {
+          "name": "Precision Needle & Threading Wire",
+          "purpose": "Routing tendon line through internal finger channels"
+        },
+        {
+          "name": "Heat Gun & Heat Shrink",
+          "purpose": "Flex sensor glove terminal reinforcement"
+        }
+      ],
+      "customParts": {
+        "title": "3D-Printable Bionic Hand Phalanges & Forearm Assembly",
+        "filename": "bionic_hand_full_assembly.stl",
+        "type": "3D CAD / STL",
+        "size": "9.8 MB",
+        "author": "RoboSeekho Labs"
+      },
+      "schematic": {
+        "title": "Transmitter Glove & Receiver Hand RF24 Schematics",
+        "filename": "bionic_hand_schematics.png",
+        "description": "5x flex sensor voltage divider circuit and 5x micro servo PWM controller."
+      }
+    },
+    "channels": [
+      {
+        "name": "Arduino",
+        "icon": "arduino"
+      },
+      {
+        "name": "3D Printing",
+        "icon": "3dprint"
+      },
+      {
+        "name": "Biomechanics",
+        "icon": "biomechanics"
+      },
+      {
+        "name": "Prosthetics",
+        "icon": "prosthetics"
+      }
+    ]
+  }
+]
