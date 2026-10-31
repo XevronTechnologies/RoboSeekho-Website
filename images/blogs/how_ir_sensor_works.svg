@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="100%" stop-color="#be123c"/>
+    </linearGradient>
+    <linearGradient id="sonarBeam" x1="50%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" stop-color="#f43f5e" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#f43f5e" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="pirGlow" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="radarSweep" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22c55e" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="gridPattern" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#334155" stroke-width="0.5" stroke-opacity="0.3"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="640" height="360" fill="url(#bgGrad)"/>
+  <rect width="640" height="360" fill="url(#gridPattern)"/>
+
+  <!-- Tech Accent Lines & Corner Borders -->
+  <line x1="20" y1="20" x2="80" y2="20" stroke="#f43f5e" stroke-width="2" stroke-linecap="round"/>
+  <line x1="20" y1="20" x2="20" y2="80" stroke="#f43f5e" stroke-width="2" stroke-linecap="round"/>
+  <line x1="620" y1="20" x2="560" y2="20" stroke="#f43f5e" stroke-width="2" stroke-linecap="round"/>
+  <line x1="620" y1="20" x2="620" y2="80" stroke="#f43f5e" stroke-width="2" stroke-linecap="round"/>
+  
+  <line x1="20" y1="340" x2="80" y2="340" stroke="#be123c" stroke-width="2" stroke-linecap="round"/>
+  <line x1="20" y1="340" x2="20" y2="280" stroke="#be123c" stroke-width="2" stroke-linecap="round"/>
+  <line x1="620" y1="340" x2="560" y2="340" stroke="#be123c" stroke-width="2" stroke-linecap="round"/>
+  <line x1="620" y1="340" x2="620" y2="280" stroke="#be123c" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Top RoboSeekho Brand Pill -->
+  <rect x="36" y="32" width="140" height="24" rx="12" fill="#1e293b" stroke="#f43f5e" stroke-width="1.5"/>
+  <circle cx="48" cy="44" r="4" fill="#f43f5e"/>
+  <text x="58" y="48" font-size="11" font-weight="700" fill="#f8fafc" font-family="'Space Grotesk', system-ui, sans-serif" letter-spacing="1">ROBOSEEKHO</text>
+
+  <!-- Top Right Lab Tag -->
+  <rect x="500" y="32" width="104" height="24" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="552" y="48" font-size="10" font-weight="600" fill="#94a3b8" text-anchor="middle" font-family="'Space Grotesk', sans-serif">MAKER BUILD</text>
+
+  <!-- Illustration Visual Center -->
+  <g id="illustration">
+    
+            <!-- Sensor PCB Outline -->
+            <rect x="220" y="80" width="130" height="90" rx="8" fill="#1e293b" stroke="#f43f5e" stroke-width="2"/>
+            <!-- IR Transmitter LED (Clear/Blue) -->
+            <rect x="330" y="95" width="30" height="16" rx="4" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+            <!-- IR Receiver Photodiode (Black) -->
+            <rect x="330" y="130" width="30" height="16" rx="4" fill="#020617" stroke="#475569" stroke-width="1.5"/>
+            <!-- Emitted IR Beam (Invisible light rays) -->
+            <line x1="360" y1="103" x2="415" y2="115" stroke="#f43f5e" stroke-width="3" stroke-dasharray="5,3"/>
+            <!-- Reflected IR Beam back into Photodiode -->
+            <line x1="415" y1="115" x2="360" y2="138" stroke="#fb7185" stroke-width="3" stroke-dasharray="5,3"/>
+            <!-- Target Obstacle Surface -->
+            <rect x="415" y="85" width="16" height="75" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
+            <!-- LM393 Comparator IC inside PCB -->
+            <rect x="250" y="105" width="45" height="35" rx="3" fill="#0f172a" stroke="#64748b" stroke-width="1.5"/>
+            <text x="272" y="126" font-size="8" fill="#fff" font-weight="bold" text-anchor="middle" font-family="monospace">LM393</text>
+        
+  </g>
+
+  <!-- Bottom Title Card Bar -->
+  <rect x="36" y="270" width="568" height="60" rx="8" fill="#0b1120" fill-opacity="0.9" stroke="#334155" stroke-width="1"/>
+  <line x1="36" y1="270" x2="160" y2="270" stroke="#f43f5e" stroke-width="3" stroke-linecap="round"/>
+  
+  <text x="56" y="297" font-size="19" font-weight="800" fill="#f8fafc" font-family="'Space Grotesk', system-ui, sans-serif">IR Sensor Working Principles</text>
+  <text x="56" y="318" font-size="12" font-weight="500" fill="#94a3b8" font-family="'Inter', system-ui, sans-serif">Infrared LED + Photodiode + LM393 Comparator</text>
+  
+  <!-- Right Badge -->
+  <rect x="510" y="285" width="76" height="28" rx="14" fill="#f43f5e" fill-opacity="0.15" stroke="#f43f5e" stroke-width="1.5"/>
+  <text x="548" y="303" font-size="11" font-weight="700" fill="#f43f5e" text-anchor="middle" font-family="'Space Grotesk', sans-serif">VERIFIED</text>
+</svg>
