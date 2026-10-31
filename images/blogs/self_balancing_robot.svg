@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <pattern id="gridPattern" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#334155" stroke-width="0.5" stroke-opacity="0.3"/>
+    </pattern>
+  </defs>
+
+  <rect width="640" height="360" fill="url(#bgGrad)"/>
+  <rect width="640" height="360" fill="url(#gridPattern)"/>
+
+  <line x1="20" y1="20" x2="80" y2="20" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"/>
+  <line x1="20" y1="20" x2="20" y2="80" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"/>
+  <line x1="620" y1="20" x2="560" y2="20" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"/>
+  <line x1="620" y1="20" x2="620" y2="80" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"/>
+
+  <line x1="20" y1="340" x2="80" y2="340" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+  <line x1="20" y1="340" x2="20" y2="280" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+  <line x1="620" y1="340" x2="560" y2="340" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+  <line x1="620" y1="340" x2="620" y2="280" stroke="#6366f1" stroke-width="2" stroke-linecap="round"/>
+
+  <rect x="36" y="32" width="140" height="24" rx="12" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5"/>
+  <circle cx="48" cy="44" r="4" fill="#8b5cf6"/>
+  <text x="58" y="48" font-size="11" font-weight="700" fill="#f8fafc" font-family="'Space Grotesk', system-ui, sans-serif" letter-spacing="1">ROBOSEEKHO</text>
+
+  <rect x="500" y="32" width="104" height="24" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="552" y="48" font-size="10" font-weight="600" fill="#94a3b8" text-anchor="middle" font-family="'Space Grotesk', sans-serif">MAKER BUILD</text>
+
+  <g id="illustration">
+    
+            <!-- Upright Balancing Body Chassis (Tilted slightly to show balance dynamics) -->
+            <g transform="rotate(-6 320 180)">
+              <!-- Dual Acrylic Decks -->
+              <rect x="305" y="60" width="30" height="115" rx="5" fill="#1e293b" stroke="#8b5cf6" stroke-width="3"/>
+              <!-- Battery pack on lower deck -->
+              <rect x="310" y="125" width="20" height="35" rx="3" fill="#334155" stroke="#64748b" stroke-width="1.5"/>
+              <!-- Arduino & MPU-6050 on upper deck -->
+              <rect x="310" y="75" width="20" height="35" rx="3" fill="#00878f" stroke="#38bdf8" stroke-width="1.5"/>
+              <circle cx="320" cy="92" r="4" fill="#ef4444"/>
+              <!-- Stepper Motor & Axle -->
+              <rect x="290" y="165" width="60" height="20" rx="3" fill="#475569" stroke="#94a3b8" stroke-width="2"/>
+            </g>
+            <!-- Large Balance Wheels on Ground -->
+            <circle cx="280" cy="185" r="32" fill="#0f172a" stroke="#8b5cf6" stroke-width="4"/>
+            <circle cx="280" cy="185" r="10" fill="#334155"/>
+            <circle cx="360" cy="185" r="32" fill="#0f172a" stroke="#8b5cf6" stroke-width="4"/>
+            <circle cx="360" cy="185" r="10" fill="#334155"/>
+            <!-- PID Dynamic Balance Balance Arrows / Pendulum Arc -->
+            <path d="M 285 55 A 40 40 0 0 1 355 55" fill="none" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="4,4"/>
+            <polygon points="285,55 292,50 292,60" fill="#22d3ee"/>
+            <polygon points="355,55 348,50 348,60" fill="#22d3ee"/>
+            <text x="320" y="45" font-size="9" fill="#22d3ee" font-weight="bold" text-anchor="middle" font-family="monospace">PID BALANCE</text>
+        
+  </g>
+
+  <rect x="36" y="270" width="568" height="60" rx="8" fill="#0b1120" fill-opacity="0.9" stroke="#334155" stroke-width="1"/>
+  <line x1="36" y1="270" x2="160" y2="270" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round"/>
+  
+  <text x="56" y="297" font-size="19" font-weight="800" fill="#f8fafc" font-family="'Space Grotesk', system-ui, sans-serif">Self-Balancing Robot</text>
+  <text x="56" y="318" font-size="12" font-weight="500" fill="#94a3b8" font-family="'Inter', system-ui, sans-serif">Inverted Pendulum + MPU-6050 + PID Control</text>
+  
+  <rect x="510" y="285" width="76" height="28" rx="14" fill="#8b5cf6" fill-opacity="0.15" stroke="#8b5cf6" stroke-width="1.5"/>
+  <text x="548" y="303" font-size="11" font-weight="700" fill="#8b5cf6" text-anchor="middle" font-family="'Space Grotesk', sans-serif">VERIFIED</text>
+</svg>

@@ -2054,6 +2054,435 @@
     ]
   },
   {
+    "id": "crop-harvesting-robot",
+    "title": "How Crop Harvesting Robots Work: Autonomous Agri-Tech Robotics",
+    "instagramCaption": "How crops harvesting robo work ? Learn with roboseekho",
+    "summary": "Explore the future of agriculture! Construct an autonomous crop-harvesting rover prototype equipped with color-detection camera sensors, a gentle robotic gripper, and obstacle navigation.",
+    "category": "Robotics",
+    "difficulty": "Intermediate",
+    "image": "images/blogs/crop_harvesting_robot.svg",
+    "date": "Oct 31, 2026",
+    "readTime": "7 min read",
+    "author": {
+      "name": "RoboSeekho Labs",
+      "role": "Agri-Tech Robotics Specialist",
+      "avatar": "RS"
+    },
+    "tags": [
+      "Arduino Mega",
+      "Agri-Tech",
+      "Robotic Arm",
+      "Color Sensor",
+      "Autonomous"
+    ],
+    "stats": {
+      "respects": 385,
+      "views": 8420,
+      "comments": 88
+    },
+    "details": {
+      "story": "Agriculture is facing rapid workforce shortages and climate shifts worldwide. In this advanced RoboSeekho STEM lab build, students engineer a smart harvesting rover that navigates between crop rows, scans fruit ripeness with an optical TCS3200 color sensor, and deploys a gentle 4-DOF servo manipulator arm to pluck mature produce without damaging surrounding vines.",
+      "hardware": [
+        {
+          "item": "Arduino Mega 2560 R3",
+          "qty": "1",
+          "purpose": "Inverse kinematics, color analysis & rover motor control"
+        },
+        {
+          "item": "TCS3200 / S70 RGB Color Recognition Sensor",
+          "qty": "1",
+          "purpose": "Fruit ripeness hue and saturation classification"
+        },
+        {
+          "item": "MG996R Metal Gear Servos",
+          "qty": "4",
+          "purpose": "Base pan, shoulder lift, elbow tilt & gripper actuation"
+        },
+        {
+          "item": "4WD Rover Chassis with Geared TT Motors",
+          "qty": "1",
+          "purpose": "All-terrain furrow and row navigation"
+        },
+        {
+          "item": "L298N Dual H-Bridge Motor Driver",
+          "qty": "1",
+          "purpose": "4WD chassis wheel locomotion regulation"
+        },
+        {
+          "item": "11.1V 3S LiPo Battery with LM2596 Buck",
+          "qty": "1",
+          "purpose": "Regulated dual 5V / 11V high-current power distribution"
+        }
+      ],
+      "software": [
+        {
+          "name": "Arduino IDE 2.x",
+          "type": "Microcontroller firmware"
+        },
+        {
+          "name": "Servo.h Library",
+          "type": "Multi-axis manipulator kinematics"
+        },
+        {
+          "name": "RoboSeekho Agri-Vision Studio",
+          "type": "Color calibration & harvesting tool"
+        }
+      ],
+      "steps": [
+        "Assemble the 4WD mobile rover chassis with knobby rubber tires for soil stability.",
+        "Mount the 4-DOF aluminium articulated arm onto the front chassis deck.",
+        "Integrate the TCS3200 color sensor into the center of the soft silicone gripper claw.",
+        "Calibrate RGB reflection frequencies for target crops: red fruit emits high R/G frequency ratios.",
+        "Program the automated pick-and-place loop: navigate forward, scan crop, pluck ripe fruit, and drop into collection basket."
+      ],
+      "codeSnippet": "#include <Servo.h>\n\nServo baseServo, armServo, gripperServo;\nconst int S2 = 4, S3 = 5, OUT_PIN = 6;\n\nint getRedFrequency() {\n  digitalWrite(S2, LOW); digitalWrite(S3, LOW);\n  return pulseIn(OUT_PIN, LOW);\n}\n\nvoid harvestFruit() {\n  // Pluck gesture\n  armServo.write(110); delay(600);\n  gripperServo.write(90); delay(400); // Close claw\n  armServo.write(45); delay(600);  // Lift\n  baseServo.write(180); delay(800); // Turn to basket\n  gripperServo.write(30); delay(400); // Release\n  baseServo.write(90);\n}\n\nvoid setup() {\n  pinMode(S2, OUTPUT); pinMode(S3, OUTPUT); pinMode(OUT_PIN, INPUT);\n  baseServo.attach(8); armServo.attach(9); gripperServo.attach(10);\n  baseServo.write(90); armServo.write(45); gripperServo.write(30);\n}\n\nvoid loop() {\n  int redVal = getRedFrequency();\n  if (redVal < 60 && redVal > 15) { // Red ripe fruit detected!\n    harvestFruit();\n    delay(3000);\n  }\n  delay(200);\n}",
+      "storySections": [
+        {
+          "id": "the-idea",
+          "title": "The Idea",
+          "text": "Selective harvesting is the holy grail of precision agriculture. Instead of clear-cutting fields, modern robots pick only fruits at peak ripeness, optimizing crop yield and reducing food waste."
+        },
+        {
+          "id": "how-it-works",
+          "title": "How It Works",
+          "text": "The TCS3200 sensor converts ambient reflected light into a square wave whose frequency is proportional to light intensity through selective red, green, and blue photodiodes. When red frequency spikes, the Arduino commands the robotic arm to execute a smooth plucking motion."
+        },
+        {
+          "id": "assembling-electronics",
+          "title": "Assembling the Electronics",
+          "text": "Four high-torque metal-gear servos draw up to 4A peak stall current. An LM2596 switching regulator steps down the 11.1V LiPo pack to 5.5V specifically for the servo rail, preventing voltage dips on the Arduino Mega."
+        },
+        {
+          "id": "programming-testing",
+          "title": "Programming and Testing",
+          "text": "Students test the rover with artificial apples and oranges, tuning inverse kinematics angles so the gripper cradles produce without bruising tender skins."
+        }
+      ],
+      "handTools": [
+        {
+          "name": "3D Printer (PETG / TPU)",
+          "purpose": "Soft-touch compliant gripper finger printing"
+        },
+        {
+          "name": "Digital Multimeter",
+          "purpose": "LM2596 buck converter voltage calibration"
+        }
+      ],
+      "customParts": {
+        "title": "Soft-Touch Compliant Gripper & Sensor Bracket CAD",
+        "filename": "fruit_gripper_v2.stl",
+        "type": "3D CAD / STL",
+        "size": "4.6 MB",
+        "author": "RoboSeekho Labs"
+      },
+      "schematic": {
+        "title": "Arduino Mega, TCS3200 & 4-DOF Servo Agri-Arm Schematic",
+        "filename": "crop_harvesting_schematic.png",
+        "description": "Wiring diagram connecting Arduino Mega to color sensor, 4x MG996R servos, and L298N driver."
+      }
+    },
+    "channels": [
+      {
+        "name": "Arduino",
+        "icon": "arduino"
+      },
+      {
+        "name": "Agri-Tech",
+        "icon": "robotics"
+      },
+      {
+        "name": "Sensors",
+        "icon": "sensors"
+      }
+    ]
+  },
+  {
+    "id": "school-stem-lab-upgrade",
+    "title": "Upgrading K-12 Schools with Next-Gen STEM & Robotics Labs",
+    "instagramCaption": "Upgrade your schools with roboseekho #RoboSeekho #trending #instgram",
+    "summary": "How RoboSeekho transforms traditional school computer rooms into hands-on innovation hubs with Atal Tinkering Labs, AI kits, 3D printers, and experiential robotics curriculum.",
+    "category": "STEM Education",
+    "difficulty": "Beginner",
+    "image": "images/blogs/school_stem_upgrade.svg",
+    "date": "Oct 31, 2026",
+    "readTime": "5 min read",
+    "author": {
+      "name": "RoboSeekho Labs",
+      "role": "Head of STEM Curriculum",
+      "avatar": "RS"
+    },
+    "tags": [
+      "STEM Labs",
+      "RoboSeekho",
+      "Atal Tinkering Lab",
+      "K-12 Education",
+      "Innovation"
+    ],
+    "stats": {
+      "respects": 460,
+      "views": 10540,
+      "comments": 124
+    },
+    "details": {
+      "story": "Textbooks alone can no longer prepare students for a world driven by artificial intelligence, autonomous robotics, and IoT. RoboSeekho partners with visionary schools across India and internationally to establish turnkey STEM and Atal Tinkering Labs (ATL). We equip classrooms with cutting-edge prototyping benches, modular microcontroller learning kits, rapid 3D printing stations, and structured grade 6\u201312 curricula aligned with NEP 2020.",
+      "hardware": [
+        {
+          "item": "RoboSeekho Modular Tinkering Starter Kits",
+          "qty": "20",
+          "purpose": "Hands-on student electronics & sensor exploration"
+        },
+        {
+          "item": "High-Precision 3D Printer (Prusa / Creality)",
+          "qty": "2",
+          "purpose": "Rapid physical prototyping of student inventions"
+        },
+        {
+          "item": "Arduino & ESP32 Prototyping Workbenches",
+          "qty": "10",
+          "purpose": "Dedicated dual-student maker stations"
+        },
+        {
+          "item": "Temperature-Controlled Soldering Stations",
+          "qty": "4",
+          "purpose": "Safe component wiring & PCB prototyping"
+        },
+        {
+          "item": "Digital Storage Oscilloscope & DMM Suites",
+          "qty": "2",
+          "purpose": "Real-time electronic signal analysis"
+        },
+        {
+          "item": "Mobile Component Storage Carts & Safety Gear",
+          "qty": "1",
+          "purpose": "Organized classroom tool and inventory management"
+        }
+      ],
+      "software": [
+        {
+          "name": "RoboSeekho Block-to-Text Studio",
+          "type": "Drag-and-drop to C++/Python progression"
+        },
+        {
+          "name": "Tinkercad Circuits & Fusion 360",
+          "type": "Cloud-based circuit simulation and 3D CAD"
+        },
+        {
+          "name": "RoboSeekho LMS Portal",
+          "type": "Curriculum modules, quizzes, and project rubrics"
+        }
+      ],
+      "steps": [
+        "Assess school infrastructure, power capacity, and lab layout geometry.",
+        "Install ESD-safe student workbenches equipped with grounded isolation power rails.",
+        "Deploy RoboSeekho modular hardware kits covering electronics, sensors, AI vision, and IoT.",
+        "Conduct intensive 5-day hands-on teacher training and master mentor certification.",
+        "Launch the annual RoboSeekho Inter-School Innovation Challenge to celebrate student inventions."
+      ],
+      "codeSnippet": "// RoboSeekho Lab Orientation Test Sketch\nvoid setup() {\n  Serial.begin(115200);\n  pinMode(LED_BUILTIN, OUTPUT);\n  Serial.println(\"Welcome to RoboSeekho STEM & Tinkering Lab!\");\n  Serial.println(\"System Status: All Sensors & Benches Ready.\");\n}\n\nvoid loop() {\n  digitalWrite(LED_BUILTIN, HIGH);\n  delay(500);\n  digitalWrite(LED_BUILTIN, LOW);\n  delay(500);\n}",
+      "storySections": [
+        {
+          "id": "the-idea",
+          "title": "The Idea",
+          "text": "Tomorrow's innovators cannot be nurtured through rote memorization. RoboSeekho's comprehensive lab upgrades turn passive classrooms into dynamic incubators where students solve real-world community challenges."
+        },
+        {
+          "id": "how-it-works",
+          "title": "How It Works",
+          "text": "We combine hardware, software, and pedagogy: students start with intuitive visual block coding in middle school, transition seamlessly to embedded C++ on Arduino, and graduate to AI computer vision and ROS in high school."
+        },
+        {
+          "id": "assembling-electronics",
+          "title": "Assembling the Electronics",
+          "text": "Every workstation is engineered for complete safety: low-voltage isolated power rails, ESD grounding, and organized component sorting bins ensure friction-free tinkering."
+        },
+        {
+          "id": "programming-testing",
+          "title": "Programming and Testing",
+          "text": "Over 85,000 students across 120+ partner institutions have engineered award-winning science fair innovations through RoboSeekho labs."
+        }
+      ],
+      "handTools": [
+        {
+          "name": "ESD Grounding Wrist Straps",
+          "purpose": "Static electricity prevention"
+        },
+        {
+          "name": "Safety Goggles & First Aid Kit",
+          "purpose": "Classroom lab safety assurance"
+        }
+      ],
+      "customParts": {
+        "title": "RoboSeekho Modular Breadboard Dock & Sensor Organizer",
+        "filename": "roboseekho_dock.stl",
+        "type": "3D CAD / STL",
+        "size": "3.2 MB",
+        "author": "RoboSeekho Labs"
+      },
+      "schematic": {
+        "title": "Turnkey Tinkering Lab Layout & Power Topology",
+        "filename": "stem_lab_layout.png",
+        "description": "Architectural floorplan and electrical topology for a 40-student school robotics lab."
+      }
+    },
+    "channels": [
+      {
+        "name": "RoboSeekho",
+        "icon": "robotics"
+      },
+      {
+        "name": "STEM Education",
+        "icon": "arduino"
+      },
+      {
+        "name": "Innovation",
+        "icon": "sensors"
+      }
+    ]
+  },
+  {
+    "id": "self-balancing-robot",
+    "title": "How Two-Wheeled Self-Balancing Robots Work: MPU-6050 & PID Tuning",
+    "instagramCaption": "How self balance robo work ? learn with roboseekho",
+    "summary": "Master the physics of inverted pendulums! Construct a two-wheeled self-balancing robot utilizing an MPU-6050 6-axis gyro/accelerometer and high-speed PID control loops.",
+    "category": "Robotics",
+    "difficulty": "Advanced",
+    "image": "images/blogs/self_balancing_robot.svg",
+    "date": "Oct 31, 2026",
+    "readTime": "8 min read",
+    "author": {
+      "name": "RoboSeekho Labs",
+      "role": "Control Systems Mentor",
+      "avatar": "RS"
+    },
+    "tags": [
+      "Arduino Nano",
+      "MPU-6050",
+      "PID Control",
+      "Self-Balancing",
+      "Inverted Pendulum"
+    ],
+    "stats": {
+      "respects": 490,
+      "views": 11280,
+      "comments": 140
+    },
+    "details": {
+      "story": "Standing upright on two wheels seems to defy gravity. In this classic robotics benchmark, RoboSeekho students construct an inverted pendulum robot. Combining a 6-axis MPU-6050 inertial measurement unit (IMU) with high-speed PID feedback loops, the robot constantly measures tilt pitch angle and accelerates its wheels toward the fall direction, holding razor-sharp balance even when shoved.",
+      "hardware": [
+        {
+          "item": "Arduino Nano R3",
+          "qty": "1",
+          "purpose": "16 MHz high-speed PID computation engine"
+        },
+        {
+          "item": "MPU-6050 6-Axis Accelerometer & Gyroscope",
+          "qty": "1",
+          "purpose": "Pitch angle and angular velocity tracking"
+        },
+        {
+          "item": "High-Torque Geared DC Motors with Optical Encoders",
+          "qty": "2",
+          "purpose": "Fast bidirectional wheel actuation"
+        },
+        {
+          "item": "TB6612FNG / L298N Dual Motor Driver",
+          "qty": "1",
+          "purpose": "Low internal resistance motor PWM driving"
+        },
+        {
+          "item": "Two-Tier Acrylic Chassis & 65mm Rubber Wheels",
+          "qty": "1",
+          "purpose": "Rigid vertical chassis with low moment of inertia"
+        },
+        {
+          "item": "3S 11.1V 1500mAh High-Discharge LiPo Battery",
+          "qty": "1",
+          "purpose": "Rapid current delivery for instantaneous motor reversals"
+        }
+      ],
+      "software": [
+        {
+          "name": "Arduino IDE 2.x",
+          "type": "Microcontroller firmware"
+        },
+        {
+          "name": "I2Cdev & MPU6050 6-Axis DMP Library",
+          "type": "Onboard hardware sensor fusion"
+        },
+        {
+          "name": "Arduino-PID-Library",
+          "type": "Proportional-Integral-Derivative loop"
+        }
+      ],
+      "steps": [
+        "Mount the MPU-6050 dead-center on the lower chassis deck, aligned directly over the wheel axle.",
+        "Wire MPU-6050 SDA to Nano Pin A4, SCL to Pin A5, and INT to Pin D2 (External Interrupt 0).",
+        "Connect motor driver inputs to Arduino PWM pins 5, 6, 9, and 10.",
+        "Run the MPU-6050 DMP calibration sketch on a perfectly level surface to calculate gyro zero-offsets.",
+        "Tune the PID gains: first adjust Kp until the robot oscillates steadily, then add Kd to dampen wobbles, and fine-tune Ki to eliminate steady-state tilt drift."
+      ],
+      "codeSnippet": "#include <Wire.h>\n#include \"MPU6050_6Axis_MotionApps20.h\"\n#include <PID_v1.h>\n\nMPU6050 mpu;\ndouble setpoint = 0.0; // Desired vertical balance angle\ndouble input, output;\ndouble Kp = 25.0, Ki = 140.0, Kd = 1.2;\nPID pid(&input, &output, &setpoint, Kp, Ki, Kd, DIRECT);\n\nvoid setup() {\n  Wire.begin();\n  mpu.initialize();\n  mpu.dmpInitialize();\n  mpu.setDMPEnabled(true);\n  pid.SetMode(AUTOMATIC);\n  pid.SetOutputLimits(-255, 255);\n  pid.SetSampleTime(10); // 100Hz PID loop\n}\n\nvoid loop() {\n  // Read fused DMP pitch angle\n  input = readPitchAngle();\n  pid.Compute();\n  \n  if (abs(input) < 35.0) { // Safety cutoff if knocked over\n    driveMotors(output);\n  } else {\n    stopMotors();\n  }\n}",
+      "storySections": [
+        {
+          "id": "the-idea",
+          "title": "The Idea",
+          "text": "Self-balancing technology powers Segways, humanoid walking robots, and space rocket gimbal stabilizers. This project teaches the quintessential control theory concept: the inverted pendulum."
+        },
+        {
+          "id": "how-it-works",
+          "title": "How It Works",
+          "text": "The MPU-6050's onboard Digital Motion Processor (DMP) fuses accelerometer gravity vectors with gyroscope angular rates using complementary Kalman filtering. When the robot tilts forward by even 0.5 degrees, the PID algorithm commands the motors forward to restore the center of gravity directly above the wheel contact patch."
+        },
+        {
+          "id": "assembling-electronics",
+          "title": "Assembling the Electronics",
+          "text": "Rigid chassis construction is paramount: any flex or battery wobble introduces phase delay into the control loop that leads to uncontrollable vibration."
+        },
+        {
+          "id": "programming-testing",
+          "title": "Programming and Testing",
+          "text": "Once tuned, you can push the robot with a ruler\u2014it will stubbornly push back against your hand, maintain its ground, and stay rock-solid vertical."
+        }
+      ],
+      "handTools": [
+        {
+          "name": "Digital Bubble Level",
+          "purpose": "Vertical balance angle zero calibration"
+        },
+        {
+          "name": "Precision Metric Allen Set",
+          "purpose": "Motor coupler and wheel shaft locking"
+        }
+      ],
+      "customParts": {
+        "title": "Self-Balancing Robot Chassis Deck & Battery Clamp CAD",
+        "filename": "self_balance_chassis.stl",
+        "type": "3D CAD / STL",
+        "size": "5.4 MB",
+        "author": "RoboSeekho Labs"
+      },
+      "schematic": {
+        "title": "Arduino Nano, MPU-6050 & Dual Motor Driver Schematics",
+        "filename": "self_balancing_schematic.png",
+        "description": "Wiring diagram connecting Arduino Nano to MPU-6050 IMU and motor driver."
+      }
+    },
+    "channels": [
+      {
+        "name": "Arduino",
+        "icon": "arduino"
+      },
+      {
+        "name": "Robotics",
+        "icon": "robotics"
+      },
+      {
+        "name": "Control Systems",
+        "icon": "sensors"
+      }
+    ]
+  },
+  {
     "id": "line-follower-robot",
     "title": "Autonomous Line Follower Robot with Dual IR Track Sensors",
     "instagramCaption": "RoboSeekho Line Following Robot with Dual IR Sensors",
